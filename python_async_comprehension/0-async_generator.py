@@ -6,9 +6,10 @@
 
 import asyncio
 import random
+from typing import Generator
 
 
-async def async_generator():
+async def async_generator() -> Generator[float, none, none]:
     """
     Asynchronously generate 10 random floating-point numbers.
     """
