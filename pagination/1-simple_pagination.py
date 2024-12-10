@@ -26,12 +26,8 @@ class Server:
         """
         Retrieves a page from the dataset.
         """
-        assert isinstance(page, int) and page > 0, """
-        page must be a positive integer
-        """
-        assert isinstance(page_size, int) and page_size > 0, """
-        page_size must be a positive integer
-        """
+        assert isinstance(page, int) and page > 0, ""
+        assert isinstance(page_size, int) and page_size > 0, ""
 
         data = self.dataset()
         start, end = index_range(page, page_size)
