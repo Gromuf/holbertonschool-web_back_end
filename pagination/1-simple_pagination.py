@@ -3,6 +3,11 @@ import math
 from typing import List
 
 
+def index_range(page: int, page_size: int) -> tuple:
+    """Returns a tuple of start and end indexes for pagination."""
+    return ((page - 1) * page_size, page * page_size)
+
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -31,9 +36,4 @@ class Server:
 
         data = self.dataset()
         start, end = index_range(page, page_size)
-        return data[start:end]
-
-
-def index_range(page: int, page_size: int) -> tuple:
-    """Returns a tuple of start and end indexes for pagination."""
-    return ((page - 1) * page_size, page * page_size)
+        return data[start:end] if start < len(data) else []
