@@ -13,7 +13,7 @@ ui.question('', (name) => {
   ui.close();
 });
 
-ui.on(`close`, () => {
+ui.on('close', () => {
   console.log('This important software is now closing');
   process.exit(0);
 });
