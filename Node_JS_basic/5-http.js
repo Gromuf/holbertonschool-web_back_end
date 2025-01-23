@@ -49,7 +49,7 @@ const app = http.createServer(async (req, res) => {
     }
     try {
       const { totalStudents, fieldCounts, fieldStudents } = await readStudentData(databasePath);
-      let response = `This is the list of our students \nNumber of students: ${totalStudents}\n`;
+      let response = `This is the list of our students\nNumber of students: ${totalStudents}\n`;
       for (const [field, count] of Object.entries(fieldCounts)) {
         response += `Number of students in ${field}: ${count}. List: ${fieldStudents[field].join(', ')}\n`;
       }
