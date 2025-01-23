@@ -27,7 +27,8 @@ async function readStudentData(path) {
         fieldStudents[field].push(firstName);
       }
     }
-    return { fieldCounts, fieldStudents };
+    const totalStudents = Object.values(fieldCounts).reduce((sum, count) => sum + count, 0);
+    return { totalStudents, fieldCounts, fieldStudents };
   } catch (error) {
     throw new Error('Cannot load the database');
   }
@@ -47,8 +48,8 @@ const app = http.createServer(async (req, res) => {
       return;
     }
     try {
-      const { fieldCounts, fieldStudents } = await readStudentData(databasePath);
-      let response = 'This is the list of our students \n';
+      const { totalStudents, fieldCounts, fieldStudents } = await readStudentData(databasePath);
+      let response = `This is the list of our students \nNumber of students: ${totalStudents}\n`;
       for (const [field, count] of Object.entries(fieldCounts)) {
         response += `Number of students in ${field}: ${count}. List: ${fieldStudents[field].join(', ')}\n`;
       }
