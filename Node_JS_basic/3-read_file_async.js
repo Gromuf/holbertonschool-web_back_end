@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 
 async function countStudent(path) {
   try {
-    const data = await fs.readFileSync(path, 'utf8');
+    const data = await fs.readFile(path, 'utf8');
     const lines = data.split('\n').filter((line) => line.trim() !== '');
     if (lines.length < 2) {
       throw new Error('No valid student data found in the file');
