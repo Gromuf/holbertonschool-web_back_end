@@ -40,7 +40,7 @@ const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    const databasePath = req.url.split('?')[1];
+    const databasePath = process.argv[2];
     if (!databasePath) {
       res.statusCode = 400;
       res.end('Database file path missing');
