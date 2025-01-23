@@ -1,20 +1,20 @@
 // 2-read_file.js
 
-const fs = require("fs");
+const fs = require('fs');
 
 function countStudent(path) {
   try {
-    const data = fs.readFileSync(path, "utf8");
-    const lines = data.split("\n").filter((line) => line.trim() != "");
+    const data = fs.readFileSync(path, 'utf8');
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
     if (lines.length < 2) {
-      throw new Error("No valid student data found in the file");
+      throw new Error('No valid student data found in the file');
     }
-    const headers = lines[0].split(",");
+    const headers = lines[0].split(',');
     const students = lines.slice(1);
     const fieldCounts = {};
     const fieldStudents = {};
     for (const student of students) {
-      const values = student.split(",");
+      const values = student.split(',');
       if (values.length === headers.length) {
         const field = values[values.length - 1].trim();
         const firstName = values[0].trim();
@@ -35,11 +35,11 @@ function countStudent(path) {
       console.log(
         `Number of students in ${field}: ${count}. List: ${fieldStudents[
           field
-        ].join(", ")}`
+        ].join(', ')}`
       );
     }
   } catch (error) {
-    throw new Error("Cannot load the database");
+    throw new Error('Cannot load the database');
   }
 }
 module.exports = countStudent;
