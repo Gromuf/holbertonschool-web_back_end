@@ -15,13 +15,13 @@ function countStudents(databasePath) {
       }
 
       const lines = data.split('\n').filter((line) => line.trim() !== ''); // Remove empty lines
-      const headers = lines.shift(); // Remove the header row
+      lines.shift(); // Remove the header row
 
       const students = {};
       let totalStudents = 0;
 
       for (const line of lines) {
-        const [firstname, lastname, age, field] = line.split(',');
+        const [firstname, field] = line.split(',');
         if (field) { // Ensure it's a valid student line
           if (!students[field.trim()]) {
             students[field.trim()] = [];
@@ -35,7 +35,7 @@ function countStudents(databasePath) {
       summary.push(`Number of students: ${totalStudents}`);
       Object.entries(students).forEach(([field, names]) => {
         summary.push(
-          `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`
+          `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`,
         );
       });
 
