@@ -21,7 +21,7 @@ function countStudents(databasePath) {
       let totalStudents = 0;
 
       for (const line of lines) {
-        const [firstname, field] = line.split(',');
+        const [firstname, , , field] = line.split(',');
         if (field) { // Ensure it's a valid student line
           if (!students[field.trim()]) {
             students[field.trim()] = [];
@@ -43,7 +43,6 @@ function countStudents(databasePath) {
     });
   });
 }
-
 
 app.get('/', (req, res) => {
   res.send('Hello Holberton School!');
