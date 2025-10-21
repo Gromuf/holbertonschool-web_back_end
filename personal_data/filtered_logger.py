@@ -5,10 +5,17 @@ import re
 from typing import List
 import logging
 
+PII_FIELDS = (
+    "name",
+    "email",
+    "phone",
+    "ssn",
+    "password",
+)
+
 
 class RedactingFormatter(logging.Formatter):
-    """ Redacting Formatter class
-        """
+    """ Redacting Formatter class"""
 
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
@@ -34,3 +41,14 @@ def filter_datum(fields: List[str], redaction: str,
     pattern = f"({'|'.join(fields)})=.*?{separator}"
     return re.sub(
         pattern, lambda m: f"{m.group(1)}={redaction}{separator}", message)
+
+
+def get_logger() -> logging.Logger:
+    """Creates and returns a logger"""
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+    sh = logging.StreamHandler()
+    sh.setFormatter(RedactingFormatter(PII_FIELDS))
+    logger.addHandler(sh)
+    return logger
