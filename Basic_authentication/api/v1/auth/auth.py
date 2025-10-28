@@ -4,6 +4,7 @@
 from typing import TypeVar
 from flask import request
 
+
 class Auth:
     """Authentication class
     """
@@ -12,11 +13,9 @@ class Auth:
         """ Determine if a path requires authentication"""
         return False
 
-
     def authorization_header(self, request=None) -> str:
         """ Return the Authorization header from the request"""
         return None
-
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ Return the current user"""
