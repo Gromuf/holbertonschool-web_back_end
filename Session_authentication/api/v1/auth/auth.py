@@ -3,7 +3,7 @@
 """
 from typing import TypeVar
 from flask import request
-import os
+from os import getenv
 
 
 class Auth:
