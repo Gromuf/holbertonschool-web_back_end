@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """ Session authentication routes
 """
-from flask import jsonify, request
+from flask import jsonify, request, abort
 from api.v1.views import app_views
 from models.user import User
-from os import abort, getenv
+from os import getenv
 
 
 @app_views.route('/auth_session/login/', methods=['POST'],
@@ -40,6 +40,6 @@ def session_logout():
         handle session logout
     """
     from api.v1.app import auth
-    if auth.destroy_session(request):
-        return False, abort(404)
+    if not auth.destroy_session(request):
+        return abort(404)
     return jsonify({}), 200
