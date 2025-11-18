@@ -47,3 +47,12 @@ class DB:
             query = query.filter(getattr(User, key) == value)
         user = query.one()
         return user
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """Update a user's attributes"""
+        user = self.find_user_by(id=user_id)
+        for key, value in kwargs.items():
+            if not hasattr(User, key):
+                raise ValueError
+            setattr(user, key, value)
+        self._session.commit()
