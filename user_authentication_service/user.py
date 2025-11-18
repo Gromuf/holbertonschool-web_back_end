@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+""" User model for authentication service """
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
