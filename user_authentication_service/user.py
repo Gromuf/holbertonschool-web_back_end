@@ -11,10 +11,7 @@ class User(Base):
     __tablename__ = 'users'
 
     id: int = Column(Integer, primary_key=True)
-    email: str = Column(String(255), nullable=False, unique=True)
-    hashed_password: str = Column(String(255), nullable=False)
-    session_id: str = Column(String(255), nullable=True)
-    reset_token: str = Column(String(255), nullable=True)
-
-    def __repr__(self):
-        return "<User(id='{}', email='{}')>".format(self.id, self.email)
+    email: str = Column(String(250), nullable=False)
+    hashed_password: str = Column(String(250), nullable=False)
+    session_id: str = Column(String(250), nullable=True)
+    reset_token: str = Column(String(250), nullable=True)
