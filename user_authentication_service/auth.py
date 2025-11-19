@@ -36,3 +36,8 @@ class Auth:
                                   user.hashed_password.encode('utf-8'))
         except NoResultFound:
             return False
+
+    def _generate_uuid(self) -> str:
+        """Generate a new UUID"""
+        import uuid
+        return str(uuid.uuid4())
