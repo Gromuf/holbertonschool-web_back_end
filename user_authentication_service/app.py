@@ -29,7 +29,7 @@ def register_user():
 
 @app.route("/sessions", methods=["POST"])
 def login():
-    """ Log in a user and creates a session"""
+    """ Log in a user and create a session"""
     email = request.form.get("email")
     password = request.form.get("password")
     if not email or not password or not auth.valid_login(email, password):
