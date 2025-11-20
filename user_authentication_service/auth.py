@@ -8,10 +8,9 @@ from user import User
 import uuid
 
 
-def _hash_password(password: str) -> str:
+def _hash_password(password: str) -> bytes:
     """Hash a password using bcrypt"""
-    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-    return hashed.decode('utf-8')
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
 
 def _generate_uuid() -> str:
@@ -39,7 +38,7 @@ class Auth:
         try:
             user = self._db.find_user_by(email=email)
             return bcrypt.checkpw(password.encode('utf-8'),
-                                  user.hashed_password.encode('utf-8'))
+                                  user.hashed_password)
         except NoResultFound:
             return False
 
