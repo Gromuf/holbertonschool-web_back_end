@@ -32,9 +32,9 @@ def login():
     """ Logs in a user and creates a session """
     email = request.form.get("email")
     password = request.form.get("password")
-    if not email or not password:
+    if email is None or password is None:
         abort(401)
-    if not auth.valid_login(email, password):
+    if auth.valid_login(email, password) is False:
         abort(401)
     session_id = auth.create_session(email)
     response = jsonify({"email": email, "message": "logged in"})
