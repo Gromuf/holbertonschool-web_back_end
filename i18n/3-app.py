@@ -27,6 +27,11 @@ def get_locale():
 babel.init_app(app, locale_selector=get_locale)
 
 
+@app.context_processor
+def inject_locale():
+    return dict(get_locale=get_locale)
+
+
 @app.route("/", methods=["GET"])
 def home():
     """ Returns a welcome message """
