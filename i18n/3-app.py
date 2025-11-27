@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """ App module """
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel, gettext
 
-_ = _
-"""_ is an alias for the gettext function used for translations."""
+
+def _(message: str) -> str:
+    """
+    Translate a message using Flask-Babel's gettext.
+
+    This is an alias used in templates for internationalization.
+    """
+    return gettext(message)
+
+
 app = Flask(__name__)
 
 
