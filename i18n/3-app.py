@@ -29,6 +29,7 @@ babel.init_app(app, locale_selector=get_locale)
 
 @app.context_processor
 def inject_locale():
+    """ Inject get_locale into templates """
     return dict(get_locale=get_locale)
 
 
