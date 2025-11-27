@@ -3,7 +3,8 @@
 from flask import Flask, render_template, request
 from flask_babel import Babel, _
 
-
+_ = _
+"""_ is an alias for the gettext function used for translations."""
 app = Flask(__name__)
 
 
