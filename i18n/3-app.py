@@ -4,6 +4,10 @@ from flask import Flask, render_template, request
 from flask_babel import Babel, gettext
 
 
+gettext = gettext
+"""gettext is the Flask-Babel function used to translate message IDs."""
+
+
 def _(message: str) -> str:
     """
     Translate a message using Flask-Babel's gettext.
