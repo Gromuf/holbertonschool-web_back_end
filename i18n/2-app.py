@@ -19,12 +19,12 @@ app.config.from_object(Config)
 babel = Babel()
 
 
-def get_Locale():
+def get_locale():
     """ Determine the best match with our supported languages. """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-babel.init_app(app, locale_selector=get_Locale)
+babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route("/", methods=["GET"])
