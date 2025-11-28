@@ -26,12 +26,16 @@ users = {
 
 def get_locale():
     """ Determine the best match for supported languages """
-    if request.args.get('locale'):
-        return request.args.get('locale')
-    elif g.get('user') and g.user.get('locale'):
-        return g.user.get('locale')
-    elif request.headers.get('Locale'):
-        return request.headers.get('Locale')
+    locale = request.args.get('locale')
+    if locale in app.config['LANGUAGES']:
+        return locale
+    elif g.get('user'):
+        user_locale = g.user.get('locale')
+        if user_locale in app.config['LANGUAGES']:
+            return user_locale
+    headers_locale = request.headers.get('Locale')
+    if headers_locale in app.config['LANGUAGES']:
+        return headers_locale
     else:
         return request.accept_languages.best_match(app.config['LANGUAGES'])
 
