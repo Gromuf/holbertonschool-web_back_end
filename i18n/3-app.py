@@ -4,29 +4,14 @@ from flask import Flask, render_template, request
 from flask_babel import Babel, gettext
 
 
-gettext = gettext
-"""gettext is the Flask-Babel function used to translate message IDs."""
-
-
-def _(message: str) -> str:
-    """
-    Translate a message using Flask-Babel's gettext.
-
-    This is an alias used in templates for internationalization.
-    """
-    return gettext(message)
-
-
-app = Flask(__name__)
-
-
 class Config:
-    """Config class for Babel"""
+    """ Config class for Babel """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
+app = Flask(__name__)
 app.config.from_object(Config)
 
 babel = Babel()
@@ -38,12 +23,6 @@ def get_locale():
 
 
 babel.init_app(app, locale_selector=get_locale)
-
-
-@app.context_processor
-def inject_locale():
-    """ Inject get_locale into templates """
-    return dict(get_locale=get_locale)
 
 
 @app.route("/", methods=["GET"])
