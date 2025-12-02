@@ -8,7 +8,7 @@ from typing import Union, Callable
 from functools import wraps
 
 
-def count_calls(method: Callable):
+def count_calls(method: Callable) -> Callable:
     """Decorator to count calls to a method"""
     @wraps(method)
     def wrapper(self, *args, **kwargs):
