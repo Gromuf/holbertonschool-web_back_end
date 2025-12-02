@@ -33,6 +33,23 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
+def replay(method: Callable) -> None:
+    """Display the history of calls of a particular function"""
+    r = method.__self__._redis
+    key = method.__qualname__
+    call_count = r.get(key)
+    if call_count is None:
+        call_count = 0
+    else:
+        call_count = int(call_count)
+    print("{} was called {} times:".format(key, call_count))
+    inputs = r.lrange("{}:inputs".format(key), 0, -1)
+    outputs = r.lrange("{}:outputs".format(key), 0, -1)
+    for inp, outp in zip(inputs, outputs):
+        print("{}(*{}) -> {}".format(key, inp.decode('utf-8'),
+                                     outp.decode('utf-8')))
+
+
 class Cache:
     """cache class to store and retrieve data using Redis"""
     def __init__(self):
