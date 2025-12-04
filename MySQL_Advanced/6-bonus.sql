@@ -1,5 +1,5 @@
 -- 6-bonus.sql
-DDELIMITER $$
+DELIMITER $$
 
 CREATE PROCEDURE AddBonus(
 	IN user_id INT,
