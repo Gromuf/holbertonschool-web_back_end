@@ -1,0 +1,14 @@
+-- 7-average_score.sql
+DELIMITER $$
+
+CREATE PROCEDURE ComputeAverageScoreForUser(
+	IN user_id INT,
+	OUT avg_score FLOAT
+)
+BEGIN
+	SELECT AVG(score) INTO avg_score
+	FROM corrections
+	WHERE user_id = user_id;
+END$$
+
+DELIMITER ;
