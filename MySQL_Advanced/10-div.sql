@@ -1,7 +1,15 @@
 -- 10-div.sql
-function safe_divide(a INT, b INT) {
-	if (b == 0) {
-		return 0;
-	}
-	return a / b;
-}
+DELIMITER $$
+
+CREATE FUNCTION safe_divide(a INT, b INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+	IF b = 0 THEN
+		RETURN NULL;
+	ELSE
+		RETURN a / b;
+	END IF;
+END$$
+
+DELIMITER ;
