@@ -1,7 +1,7 @@
 // 1-calcul.js
 "use strict";
 
-function calculateNumber(a, b, type) {
+function calculateNumber(type, a, b) {
   if (type === "SUM") {
     return Math.round(a) + Math.round(b);
   } else if (type === "SUBTRACT") {
