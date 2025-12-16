@@ -10,8 +10,6 @@ redisClient.on("error", (err) => {
   console.log(`Redis Client not connected to the server: ${err.message}`, err);
 });
 
-export default redisClient;
-
 function setNewSchool(schoolName, value) {
   redisClient.SET(schoolName, value, redis.print);
 }
@@ -25,8 +23,6 @@ function displaySchoolValue(schoolName) {
     console.log(reply);
   });
 }
-
-export { setNewSchool, displaySchoolValue };
 
 displaySchoolValue("Holberton");
 setNewSchool("HolbertonSanFrancisco", "100");
