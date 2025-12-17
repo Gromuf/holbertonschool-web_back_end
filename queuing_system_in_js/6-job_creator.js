@@ -1,20 +1,22 @@
 // 6-job_creator.js
-import Kue from 'kue';
+import Kue from "kue";
 const queue = Kue.createQueue();
 
 const jobData = {
-  phoneNumber: String,
-  message: String,
-}
+  phoneNumber: "4153518780",
+  message: "This is the code to verify your account",
+};
 
-const job = queue.create('push_notification_code', jobData).save((err) => {
-  if (!err){
-	console.log(`Notification job created: ${job.id}`);
+const job = queue.create("push_notification_code", jobData).save((err) => {
+  if (!err) {
+    console.log(`Notification job created: ${job.id}`);
   }
 });
 
-job.on('complete', () => {
-  console.log(`Notification job ${job.id} completed`);
-}).on('failed', (err) => {
-  console.log(`Notification job ${job.id} failed: ${err}`);
-})
+job
+  .on("complete", () => {
+    console.log(`Notification job completed`);
+  })
+  .on("failed", (err) => {
+    console.log(`Notification job failed`);
+  });
